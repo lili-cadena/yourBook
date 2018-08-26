@@ -9,7 +9,7 @@ const MongoStore = require("connect-mongo")(session);
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/backend', {useMongoClient: true})
+  .connect('mongodb://localhost/yourBook', {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -41,13 +41,17 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Passport initilize
+const passport = require('./helpers/passport');
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 const index = require('./routes/index');
 const books = require('./routes/books');
 const auth = require('./routes/auth');
 app.use('/api/books', books);
-app.use('/api/', auth);
+app.use('/api', auth);
 app.use('/', index);
 
 
