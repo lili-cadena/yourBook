@@ -1,6 +1,6 @@
 import React from 'react';
-import {signup} from '../../services/Auth'
-import {Redirect} from 'react-router-dom'
+import {signup} from '../../services/Auth';
+import {withRouter, Redirect} from 'react-router-dom';
 
 class Signup extends React.Component{
 
@@ -38,19 +38,19 @@ class Signup extends React.Component{
             <form onSubmit={this.handleSubmit}>
 
                 <label>Name</label>
-                <input type="text" name="username" id="username" placeholder='User name'onChange={this.handleChange}/>
+                <input type='text' name='username' placeholder='User name' onChange={this.handleChange}/>
 
-                <label>Correo</label>
-                <input type="email" name="email" id="username" placeholder='Email' onChange={this.handleChange}/>
+                <label>Email</label>
+                <input type='email' name='email' placeholder='Email' onChange={this.handleChange}/>
 
-                <label>Contraseña</label>
-                <input type="password" name="password" id="passwordSign" placeholder='xxxxx' onChange={this.handleChange}/>
+                <label>Password</label>
+                <input type='password' name='password' placeholder='xxxxx' onChange={this.handleChange}/>
 
-                <button className='signup' htmlType="submit" onClick={this.handleRedirectHome}>Signup</button>
+                <button className='signup' htmlType='submit' onClick={this.handleRedirect}>Signup</button>
                 
             </form>
         );
     }
 }
 
-export default Signup;
+export default withRouter(Signup);
